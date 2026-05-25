@@ -158,9 +158,9 @@ function KpiSection({ artist }: { artist: Artist }) {
   }
 
   return (
-    <section className="relative z-10 bg-transparent px-5 py-5 sm:px-8 sm:py-3 lg:px-12">
+    <section className="relative z-10 border-y border-white/10 bg-[#070816] px-5 py-6 sm:px-8 lg:px-12">
       <motion.div
-        className="mx-auto grid max-w-7xl justify-items-center gap-5 bg-[linear-gradient(90deg,rgba(124,58,237,0.10),rgba(217,70,239,0.07),rgba(255,255,255,0.02))] py-5 text-center sm:grid-cols-3 sm:justify-items-start sm:gap-8 sm:py-4 sm:text-left"
+        className="mx-auto grid max-w-7xl gap-3 text-center sm:grid-cols-3 sm:text-left"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.35 }}
@@ -176,7 +176,7 @@ function KpiSection({ artist }: { artist: Artist }) {
         {artist.highlights.map((highlight, index) => (
           <motion.article
             key={highlight.label}
-            className="relative flex w-full max-w-[18rem] flex-col items-center px-2 sm:max-w-none sm:items-start sm:px-0"
+            className="relative flex min-h-[9.5rem] w-full min-w-0 flex-col justify-between overflow-hidden rounded-lg border border-white/10 bg-[linear-gradient(135deg,rgba(96,112,255,0.14),rgba(184,85,255,0.09),rgba(255,255,255,0.035))] px-5 py-5 shadow-[0_20px_70px_rgba(5,6,20,0.24)] sm:px-6"
             variants={{
               hidden: { opacity: 0, y: 24, scale: 0.96 },
               visible: { opacity: 1, y: 0, scale: 1 },
@@ -184,13 +184,13 @@ function KpiSection({ artist }: { artist: Artist }) {
             transition={{ duration: 0.75, delay: index * 0.03, ease: smoothEase }}
             whileHover={{ y: -3 }}
           >
-            <p className="text-[0.62rem] font-bold uppercase tracking-[0.28em] text-violet-100/58">
+            <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-violet-100/62">
               {highlight.label}
             </p>
-            <p className="mt-1.5 bg-gradient-to-r from-white via-violet-100 to-fuchsia-200 bg-clip-text text-3xl font-black tracking-[-0.04em] text-transparent sm:text-4xl">
+            <p className="mt-3 max-w-full bg-gradient-to-r from-white via-violet-100 to-fuchsia-200 bg-clip-text text-3xl font-black leading-none text-transparent [overflow-wrap:anywhere] sm:text-4xl">
               <AnimatedKpiValue value={highlight.value} />
             </p>
-            <p className="mt-1 max-w-[14rem] text-xs leading-5 text-violet-50/58 sm:max-w-xs sm:text-sm">
+            <p className="mt-3 text-xs leading-5 text-violet-50/64 sm:text-sm">
               {highlight.detail}
             </p>
           </motion.article>
@@ -1694,6 +1694,8 @@ function VideoSection({ artist }: { artist: Artist }) {
 }
 
 function GallerySection({ artist }: ArtistPageProps) {
+  const previewImages = artist.gallery.slice(0, 4);
+
   return (
     <section
       id="gallery"
@@ -1726,7 +1728,7 @@ function GallerySection({ artist }: ArtistPageProps) {
         </div>
 
         <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 sm:mt-12 sm:gap-5 sm:pb-4 lg:grid lg:grid-cols-3 lg:overflow-x-visible lg:pb-0 xl:grid-cols-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-          {artist.gallery.map((image, index) => (
+          {previewImages.map((image, index) => (
             <motion.div
               key={image.src}
               initial={{ opacity: 0, y: 32 }}
@@ -1743,13 +1745,6 @@ function GallerySection({ artist }: ArtistPageProps) {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 640px) 78vw, (max-width: 1024px) 24rem, (max-width: 1280px) 33vw, 25vw"
                 />
-                <div className="theme-image-overlay absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
-                <div className="theme-overlay-panel absolute bottom-0 left-0 right-0 rounded-t-[1.25rem] bg-black/30 p-5 backdrop-blur-md">
-                  <p className="text-xs uppercase tracking-[0.28em] text-white/52">
-                    {String(index + 1).padStart(2, '0')}
-                  </p>
-                  <p className="mt-2 text-lg font-medium text-white">{image.caption}</p>
-                </div>
               </div>
             </motion.div>
           ))}
@@ -2157,10 +2152,6 @@ export function ArtistGalleryPage({ artist }: ArtistPageProps) {
                   </div>
                 </div>
               </div>
-              <figcaption className="theme-overlay-panel border-t border-white/10 bg-black/28 p-5 backdrop-blur-md">
-                <p className="text-xs uppercase tracking-[0.28em] text-white/52">0{index + 1}</p>
-                <p className="mt-2 text-lg font-medium text-white">{image.caption}</p>
-              </figcaption>
             </motion.figure>
           ))}
         </div>
@@ -2223,11 +2214,6 @@ export function ArtistGalleryPage({ artist }: ArtistPageProps) {
                 quality={90}
               />
             </div>
-          </div>
-
-          {/* Caption bottom */}
-          <div className="absolute inset-x-0 bottom-0 z-10 px-5 py-5 sm:px-8">
-            <p className="text-center text-sm text-white/60">{current.caption}</p>
           </div>
 
           {/* Prev */}

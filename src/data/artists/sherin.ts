@@ -24,8 +24,8 @@ export const sherinArtist: Artist = {
     alt: 'Sherin en portrait héro pour son press kit',
   },
   gallery: [
-    { src: '/sherin/portrait.jpg', alt: 'Portrait éditorial de Sherin', caption: 'Portrait' },
     { src: '/sherin/studio.jpg', alt: 'Sherin en prise studio verticale', caption: 'Studio' },
+    { src: '/sherin/portrait.jpg', alt: 'Portrait éditorial de Sherin', caption: 'Portrait' },
     { src: '/sherin/blue-mood.jpg', alt: 'Sherin dans une esthétique bleue et violette', caption: 'Blue mood' },
     { src: '/sherin/nuit-latine.jpg', alt: 'Sherin en univers visuel nocturne', caption: 'Nuit latine' },
     { src: '/sherin/lumiere.jpg', alt: 'Sherin en portrait lumineux', caption: 'Lumière' },
