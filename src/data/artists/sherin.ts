@@ -2,7 +2,7 @@ import type { Artist } from '@/types/artist';
 
 export const sherinArtist: Artist = {
   slug: 'sherin',
-  domain: null,
+  domain: 'sherin.presskit.fr',
   vercelSubdomain: 'sherin.vercel.app',
   name: 'Sherin Morsy',
   stageName: 'Sherin',
@@ -140,7 +140,7 @@ export const sherinArtist: Artist = {
   },
   videos: [],
   seo: {
-    title: 'Sherin | Press Kit Officiel — Tanguita Azul',
+    title: 'Sherin | Press Kit Officiel — Tanguita Azul Paris 2026',
     description:
       'Press kit officiel de Sherin : Tanguita Azul, bio, photos presse, liens streaming, contacts booking et presse.',
     keywords: [
